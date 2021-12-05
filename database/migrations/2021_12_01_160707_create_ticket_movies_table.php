@@ -20,6 +20,7 @@ class CreateTicketMoviesTable extends Migration
             $table->string('seatNumber', 10);
             $table->string('tanggalMovie');
             $table->string('waktuMovie');
+            $table->string('sinopsis');
             $table->double('harga');
             $table->timestamps();
         });

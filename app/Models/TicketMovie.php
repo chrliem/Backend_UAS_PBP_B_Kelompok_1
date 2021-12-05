@@ -18,6 +18,7 @@ class TicketMovie extends Model
         'seatNumber',
         'tanggalMovie',
         'waktuMovie',
+        'sinopsis',
         'harga'
     ];
 

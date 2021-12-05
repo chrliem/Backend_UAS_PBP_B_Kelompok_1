@@ -36,7 +36,7 @@ class TicketMovieController extends Controller
         {
             return response([
                 'message' => 'Tiket Movie Berhasil Ditampilkan',
-                'data' => $ticketMovie
+                'data' => [$ticketMovie]
             ], 200);
         }
 
@@ -56,6 +56,7 @@ class TicketMovieController extends Controller
             'seatNumber' => 'required|numeric',
             'tanggalMovie' => 'required',
             'waktuMovie' => 'required',
+            'sinopsis' => 'required',
             'harga' => 'required|numeric'
         ]);
 
@@ -64,7 +65,7 @@ class TicketMovieController extends Controller
         $ticketMovie = TicketMovie::create($storeData);
         return response([
             'message' => 'Tiket Movie Berhasil Ditambahkan',
-            'data' => $ticketMovie
+            'data' => [$ticketMovie]
         ], 200);
     }
 
@@ -84,7 +85,7 @@ class TicketMovieController extends Controller
         {
             return response([
                 'message' => 'Tiket Movie Berhasil Dihapus',
-                'data' => $ticketMovie
+                'data' => [$ticketMovie]
             ], 200);
         }
         
@@ -109,28 +110,20 @@ class TicketMovieController extends Controller
         $updateData = $request->all();
         
         $validate = Validator::make($updateData, [
-            'namaMovie'=> 'required',
-            'namaPemesan' => 'required',
             'seatNumber' => 'required|numeric',
-            'tanggalMovie' => 'required',
             'waktuMovie' => 'required',
-            'harga' => 'required|numeric'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
         
-        $ticketMovie->namaMovie = $updateData['namaMovie'];
-        $ticketMovie->namaPemesan = $updateData['namaPemesan'];
         $ticketMovie->seatNumber = $updateData['seatNumber'];
-        $ticketMovie->tanggalMovie = $updateData['tanggalMovie'];
         $ticketMovie->waktuMovie = $updateData['waktuMovie'];
-        $ticketMovie->harga = $updateData['harga'];
         
         if($ticketMovie->save())
         {
             return response([
                 'message' => 'Tiket Movie Berhasil Diubah',
-                'data' => $ticketMovie
+                'data' => [$ticketMovie]
             ], 200);
         }
         
