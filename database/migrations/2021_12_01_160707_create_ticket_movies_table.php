@@ -14,7 +14,7 @@ class CreateTicketMoviesTable extends Migration
     public function up()
     {
         Schema::create('ticket_movies', function (Blueprint $table) {
-            $table->id('kodeTiket');
+            $table->id('kodeTiketMovie');
             $table->string('namaMovie');
             $table->string('namaPemesan');
             $table->string('seatNumber', 10);

@@ -17,7 +17,7 @@ class UserController extends Controller
         if(count($users) > 0)
         {
             return response([
-                'message' => 'Retreive All Success',
+                'message' => 'Retreive All User Success',
                 'data' => $users
             ], 200);
         }
@@ -54,7 +54,8 @@ class UserController extends Controller
             'name' => 'required|max:60',
             'email'=> 'required|email:rfc,dns|unique:users',
             'username'=> 'required|unique:users',
-            'password' => 'required'
+            'password' => 'required',
+            'imgURL' => 'required'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
@@ -110,7 +111,8 @@ class UserController extends Controller
         $validate = Validator::make($updateData, [
             'name' => 'required|max:60',
             'email'=> ['required', 'email:rfc,dns', Rule::unique('users')->ignore($user)],
-            'username'=> ['required', Rule::unique('users')->ignore($user)]
+            'username'=> ['required', Rule::unique('users')->ignore($user)],
+            'imgURL' => 'required'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
@@ -118,6 +120,7 @@ class UserController extends Controller
         $user->name = $updateData['name'];
         $user->email = $updateData['email'];
         $user->email = $updateData['username'];
+        $user->imgURL = $updateData['imgURL'];
         
         if($user->save())
         {
