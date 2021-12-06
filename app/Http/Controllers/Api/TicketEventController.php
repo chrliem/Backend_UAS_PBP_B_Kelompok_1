@@ -36,7 +36,7 @@ class TicketEventController extends Controller
         {
             return response([
                 'message' => 'Tiket Event Berhasil Ditampilkan',
-                'data' => $ticketEvent
+                'data' => [$ticketEvent]
             ], 200);
         }
 
@@ -67,7 +67,7 @@ class TicketEventController extends Controller
         $ticketEvent = TicketEvent::create($storeData);
         return response([
             'message' => 'Tiket Event Berhasil Ditambahkan',
-            'data' => $ticketEvent
+            'data' => [$ticketEvent]
         ], 200);
     }
 
@@ -87,7 +87,7 @@ class TicketEventController extends Controller
         {
             return response([
                 'message' => 'Tiket Event Berhasil Dihapus',
-                'data' => $ticketEvent
+                'data' => [$ticketEvent]
             ], 200);
         }
         
@@ -112,34 +112,34 @@ class TicketEventController extends Controller
         $updateData = $request->all();
         
         $validate = Validator::make($updateData, [
-            'namaEvent'=> 'required',
-            'namaPemesan' => 'required',
-            'section' => 'required',
-            'seatNumber' => 'required|numeric',
-            'tanggalEvent' => 'required',
+            // 'namaEvent',
+            // 'namaPemesan',
+            'section'=>'required',
+            'seatNumber'=> 'required',
+            // 'tanggalEvent',
             'waktuEvent' => 'required',
-            'venueEvent' => 'required',
-            'alamatEvent' => 'required',
-            'harga' => 'required|numeric'
+            // 'venueEvent',
+            // 'alamatEvent',
+            // 'harga'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
         
-        $ticketEvent->namaEvent = $updateData['namaEvent'];
-        $ticketEvent->namaPemesan = $updateData['namaPemesan'];
+        // $ticketEvent->namaEvent = $updateData['namaEvent'];
+        // $ticketEvent->namaPemesan = $updateData['namaPemesan'];
         $ticketEvent->section = $updateData['section'];
         $ticketEvent->seatNumber = $updateData['seatNumber'];
-        $ticketEvent->tanggalEvent = $updateData['tanggalEvent'];
+        // $ticketEvent->tanggalEvent = $updateData['tanggalEvent'];
         $ticketEvent->waktuEvent = $updateData['waktuEvent'];
-        $ticketEvent->venueEvent = $updateData['venueEvent'];
-        $ticketEvent->alamatEvent = $updateData['alamatEvent'];
-        $ticketEvent->harga = $updateData['harga'];
+        // $ticketEvent->venueEvent = $updateData['venueEvent'];
+        // $ticketEvent->alamatEvent = $updateData['alamatEvent'];
+        // $ticketEvent->harga = $updateData['harga'];
         
         if($ticketEvent->save())
         {
             return response([
                 'message' => 'Tiket Event Berhasil Diubah',
-                'data' => $ticketEvent
+                'data' => [$ticketEvent]
             ], 200);
         }
         
