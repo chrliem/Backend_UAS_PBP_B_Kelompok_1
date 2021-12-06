@@ -14,12 +14,13 @@ class CreateTicketMoviesTable extends Migration
     public function up()
     {
         Schema::create('ticket_movies', function (Blueprint $table) {
-            $table->id('kodeTiket');
+            $table->id('kodeTiketMovie');
             $table->string('namaMovie');
             $table->string('namaPemesan');
             $table->string('seatNumber', 10);
             $table->string('tanggalMovie');
             $table->string('waktuMovie');
+            $table->string('sinopsis');
             $table->double('harga');
             $table->timestamps();
         });

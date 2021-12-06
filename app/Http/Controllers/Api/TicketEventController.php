@@ -112,28 +112,16 @@ class TicketEventController extends Controller
         $updateData = $request->all();
         
         $validate = Validator::make($updateData, [
-            // 'namaEvent',
-            // 'namaPemesan',
-            'section'=>'required',
-            'seatNumber'=> 'required',
-            // 'tanggalEvent',
+            'section' => 'required',
+            'seatNumber' => 'required|numeric',
             'waktuEvent' => 'required',
-            // 'venueEvent',
-            // 'alamatEvent',
-            // 'harga'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
         
-        // $ticketEvent->namaEvent = $updateData['namaEvent'];
-        // $ticketEvent->namaPemesan = $updateData['namaPemesan'];
         $ticketEvent->section = $updateData['section'];
         $ticketEvent->seatNumber = $updateData['seatNumber'];
-        // $ticketEvent->tanggalEvent = $updateData['tanggalEvent'];
         $ticketEvent->waktuEvent = $updateData['waktuEvent'];
-        // $ticketEvent->venueEvent = $updateData['venueEvent'];
-        // $ticketEvent->alamatEvent = $updateData['alamatEvent'];
-        // $ticketEvent->harga = $updateData['harga'];
         
         if($ticketEvent->save())
         {

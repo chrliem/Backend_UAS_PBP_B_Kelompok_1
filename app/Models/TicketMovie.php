@@ -10,7 +10,7 @@ class TicketMovie extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'kodeTiket';
+    protected $primaryKey = 'kodeTiketMovie';
     
     protected $fillable = [
         'namaMovie',
@@ -18,6 +18,7 @@ class TicketMovie extends Model
         'seatNumber',
         'tanggalMovie',
         'waktuMovie',
+        'sinopsis',
         'harga'
     ];
 
