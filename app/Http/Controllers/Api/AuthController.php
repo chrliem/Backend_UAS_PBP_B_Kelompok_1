@@ -38,7 +38,7 @@ class AuthController extends Controller
         $validate = Validator::make($loginData, [
             // 'email'=> 'required|email:rfc,dns',
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:6'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
