@@ -17,7 +17,7 @@ class AuthController extends Controller
            'name' => 'required|max:60',
            'email'=> 'required|email:rfc,dns|unique:users',
            'username'=> 'required|unique:users',
-           'password' => 'required',
+           'password' => 'required|min:6',
            'imgURL' => 'required'
         ]);
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
         $validate = Validator::make($loginData, [
             // 'email'=> 'required|email:rfc,dns',
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:6'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
