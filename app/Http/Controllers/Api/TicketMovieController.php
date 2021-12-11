@@ -46,6 +46,23 @@ class TicketMovieController extends Controller
         ], 404);
     }
 
+    public function showByUser($name)
+    {
+        $ticketMovie = TicketMovie::where("namaPemesan", $name)->get();
+        if(count($ticketMovie) > 0)
+        {
+            return response([
+                'message' => "Tiket Movie $name Ditemukan",
+                'data' => $ticketMovie
+            ], 200);
+        }
+
+        return response([
+            'message' => "Tiket Movie $name Tidak Ditemukan",
+            'data' => null
+        ], 404);
+    }
+
     public function store(Request $request)
     {
         $storeData = $request->all();

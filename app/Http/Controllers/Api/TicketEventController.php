@@ -46,6 +46,23 @@ class TicketEventController extends Controller
         ], 404);
     }
 
+    public function showByUser($name)
+    {
+        $ticketEvent = TicketEvent::where("namaPemesan", $name)->get();
+        if(count($ticketEvent) > 0)
+        {
+            return response([
+                'message' => "Tiket Event $name Ditemukan",
+                'data' => $ticketEvent
+            ], 200);
+        }
+
+        return response([
+            'message' => "Tiket Event $name Tidak Ditemukan",
+            'data' => null
+        ], 404);
+    }
+
     public function store(Request $request)
     {
         $storeData = $request->all();
