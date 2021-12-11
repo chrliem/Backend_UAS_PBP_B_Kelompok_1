@@ -22,7 +22,7 @@ class AuthController extends Controller
            'email'=> 'required|email:rfc,dns|unique:users',
            'username'=> 'required|unique:users',
            'password' => 'required|min:6',
-           'imgURL' => 'required'
+           'imgURL' 
         ]);
 
         if($validate->fails())
@@ -31,7 +31,6 @@ class AuthController extends Controller
         $registrationData['password'] = bcrypt($request->password);
         $user = User:: create($registrationData);
         $user->sendApiEmailVerificationNotification();
-
         return response([
             'message' => 'Berhasil register akun! Silahkan lakukan aktivasi email',
             'user' => $user

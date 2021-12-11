@@ -112,7 +112,7 @@ class UserController extends Controller
             'name' => 'required|max:60',
             'email'=> ['required', 'email:rfc,dns', Rule::unique('users')->ignore($user)],
             'username'=> ['required', Rule::unique('users')->ignore($user)],
-            'imgURL' => 'required'
+            'imgURL'
         ]);
 
         if($validate->fails()) return response(['message' => $validate->errors()], 400);
