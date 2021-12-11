@@ -119,7 +119,7 @@ class UserController extends Controller
         
         $user->name = $updateData['name'];
         $user->email = $updateData['email'];
-        $user->email = $updateData['username'];
+        $user->username = $updateData['username'];
         $user->imgURL = $updateData['imgURL'];
         
         if($user->save())

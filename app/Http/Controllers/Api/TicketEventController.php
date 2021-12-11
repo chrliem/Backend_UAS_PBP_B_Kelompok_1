@@ -13,7 +13,7 @@ class TicketEventController extends Controller
     public function index()
     {
         $ticketEvent = TicketEvent::all();
-
+        
         if(count($ticketEvent) > 0)
         {
             return response([
@@ -26,6 +26,8 @@ class TicketEventController extends Controller
             'message' => 'Empty',
             'data' => null
         ], 400);
+
+        
     }
 
     public function show($id)

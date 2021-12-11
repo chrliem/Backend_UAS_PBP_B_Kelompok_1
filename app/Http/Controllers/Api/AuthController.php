@@ -18,7 +18,7 @@ class AuthController extends Controller
            'email'=> 'required|email:rfc,dns|unique:users',
            'username'=> 'required|unique:users',
            'password' => 'required|min:6',
-           'imgURL' => 'required'
+           'imgURL' 
         ]);
 
         if($validate->fails())
