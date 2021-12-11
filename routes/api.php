@@ -43,3 +43,6 @@ Route::group(['middleware' => 'auth:api'], function()
     Route::put('user/{id}', 'Api\UserController@update');
     Route::delete('user/{id}', 'Api\UserController@destroy');
 });
+
+Route::get('email/verify/{id}', 'Api\EmailVerificationController@verify')->name('verificationapi.verify');
+Route::get('email/resend', 'Api\EmailVerificationController@resend')->name('verificationapi.resend');

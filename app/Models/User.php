@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 // use Laravel\Sanctum\HasApiTokens;
 use Laravel\Passport\HasApiTokens;
 use Carbon\Carbon;
+use App\Notification\Email;
 
 class User extends Authenticatable
 {
@@ -66,4 +67,9 @@ class User extends Authenticatable
             return Carbon::parse($this->attributes['updated_at'])->format('Y-m-d H:i:s');
         }
     }
+
+    public function sendApiEmailVerificationNotification(){
+        $this->notify(new Email);
+    }
+
 }
